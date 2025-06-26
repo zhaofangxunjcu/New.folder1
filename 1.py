@@ -32,9 +32,12 @@ def load_movies(filename):
     return movies
 
 def save_movies(filename, movies):
+
+    sorted_movies = sorted(movies, key=sort_key)
     with open(filename, 'w') as file:
-        for movie in movies:
+        for movie in sorted_movies:
             file.write(f"{movie[0]},{movie[1]},{movie[2]},{movie[3]}\n")
+
 def get_non_blank_input(prompt):
     response = input(prompt).strip()
     while response == '':
@@ -88,7 +91,6 @@ def watch_movie(movies):
 
     # 排序并显示
     sorted_movies = sorted(movies, key=sort_key)
-    display_movies(sorted_movies)
 
     # 读第一行输入
     choice_input = input("Enter the movie number to mark watched.\n>>> ").strip()
